@@ -18,16 +18,17 @@ private:
     QFile *file;
     QTextStream *stream;
 
+    ///
+    QCompleter *completer;
+    QTextCharFormat *format = new QTextCharFormat();
 
 public:
-    EditorObject(QString path);
+    EditorObject(QString path, __int128_t id);
+    EditorObject();
 
-    /// @brief 通过跳转指针到指定位址写入文本,按道理来说会比复制一整块到缓冲区快得多
-    /// @param pos 
-    /// @param text 
-    void append(qint64 pos, QString text);
-    qint64 pos();
-    void flush();
+    void save();
+    void getData();
+    EditorBase* getEditor();
 
     ~EditorObject();
 };

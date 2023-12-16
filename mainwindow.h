@@ -6,7 +6,7 @@
 #include <QMenuBar>
 #include <QAction>
 
-#include "editor/editorbase.h"
+#include "editor/editormanager.h"
 
 class MainWindow : public QMainWindow
 {
@@ -36,6 +36,8 @@ private:
   QAction* closeFolderAction = new QAction(tr("Close Folder"));
   QAction* closeAllFileAction = new QAction(tr("Close All Files"));
   QAction* exitAction = new QAction(tr("Exit"));
+
+  EditorManager* editorManager = new EditorManager();
 
 public:
   MainWindow(QWidget* parent = nullptr);

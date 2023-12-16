@@ -5,6 +5,9 @@
 
 #include <QString>
 #include <QTextEdit>
+#include <QCompleter>
+#include <QTextFormat>
+#include <QTextCharFormat>
 
 #include "programlanguage.h"
 
@@ -12,7 +15,6 @@ class EditorBase : public QTextEdit{
 private:
     QString *title;
     __int128_t *id;
-    //Editor *editor;
 
     ProgramLanguageSupport *language;
     
@@ -25,8 +27,8 @@ private:
 
 public:
     EditorBase(QString title,__int128_t id,ProgramLanguageSupport language);
+    EditorBase(QString title, __int128_t id);
 
-    bool save();
     bool highlight();
 
     ~EditorBase();

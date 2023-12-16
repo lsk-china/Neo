@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget* parent)
   this->setCentralWidget(tabWidget);
 
   // 添加tab
-  tabWidget->addTab(new QWidget,"untitled");
+  tabWidget->addTab(editorManager->getEditor(0)->getEditor(),"untitled");
 }
 
 MainWindow::~MainWindow() {}
