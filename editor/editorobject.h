@@ -20,7 +20,6 @@ private:
 
     ///
     QCompleter *completer;
-    QTextCharFormat *format = new QTextCharFormat();
 
 public:
     EditorObject(QString path, __int128_t id);

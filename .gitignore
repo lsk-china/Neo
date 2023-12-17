@@ -4,6 +4,9 @@
 /build
 /.cache
 /.vscode
+/.idea
+/cmake-build-debug
+/cmake-build-release
 
 *~
 *.autosave

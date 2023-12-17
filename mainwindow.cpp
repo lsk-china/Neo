@@ -3,8 +3,9 @@
 MainWindow::MainWindow(QWidget* parent)
   : QMainWindow(parent)
 {
+
   // 设置MainWindow大小
-  this->setFixedSize(QSize(1024,720));
+  this->setMinimumSize(QSize(1024,720));
   // 设置menuBar
   menuBar = new QMenuBar(this);
   this->setMenuBar(menuBar);
@@ -27,6 +28,20 @@ MainWindow::MainWindow(QWidget* parent)
   fileMenu->addSeparator();
   fileMenu->addActions({exitAction});
 
+  // 设置editMenu下拉菜单布局
+  editMenu->addActions({undoAction,rewriteAction});
+  editMenu->addSeparator();
+  editMenu->addActions({cutAction,copyAction,pasteAction,selectAllAction});
+  editMenu->addSeparator();
+  editMenu->addActions({findAction,findNextAction,findPreviousAction,findAllAction,replaceAction});
+
+  // 设置viewMenu下拉菜单布局
+
+  // 设置helpMenu下拉菜单布局
+  helpMenu->addActions({documentAction,websiteAction,feedBackAction});
+  helpMenu->addSeparator();
+  helpMenu->addActions({aboutAction});
+
   // 设置tabWidget
   tabWidget = new QTabWidget(this);
   tabWidget->setTabsClosable(true);
@@ -37,6 +52,7 @@ MainWindow::MainWindow(QWidget* parent)
 
   // 添加tab
   tabWidget->addTab(editorManager->getEditor(0)->getEditor(),"untitled");
+  editorManager->getEditor(0)->getEditor()->setFocus();
 }
 
 MainWindow::~MainWindow() {}

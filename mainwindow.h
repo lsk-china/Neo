@@ -27,6 +27,7 @@ private:
   QMenu* helpMenu = new QMenu(tr("Help")+"(&H)");
 
   // 定义QAction
+  // File
   QAction* newFileAction = new QAction(tr("New"));
   QAction* saveFileAction = new QAction(tr("Save"));
   QAction* saveAsFileAction = new QAction(tr("Save As"));
@@ -36,6 +37,26 @@ private:
   QAction* closeFolderAction = new QAction(tr("Close Folder"));
   QAction* closeAllFileAction = new QAction(tr("Close All Files"));
   QAction* exitAction = new QAction(tr("Exit"));
+
+  // Edit
+  QAction* undoAction = new QAction(tr("Undo"));
+  QAction* rewriteAction = new QAction(tr("Rewrite"));
+  QAction* cutAction = new QAction(tr("Cut"));
+  QAction* copyAction = new QAction(tr("Copy"));
+  QAction* pasteAction = new QAction(tr("Paste"));
+  QAction* selectAllAction = new QAction(tr("Select All"));
+  QAction* findAction = new QAction(tr("Find"));
+  QAction* findAllAction = new QAction(tr("Find All"));
+  QAction* findNextAction = new QAction(tr("Find Next"));
+  QAction* findPreviousAction = new QAction(tr("Find Previous"));
+  QAction* replaceAction = new QAction(tr("Replace"));
+
+
+  // Help
+  QAction* documentAction = new QAction(tr("Document"));
+  QAction* websiteAction = new QAction(tr("Website"));
+  QAction* feedBackAction = new QAction(tr("Feedback"));
+  QAction* aboutAction = new QAction(tr("About"));
 
   EditorManager* editorManager = new EditorManager();
 

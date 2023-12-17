@@ -17,10 +17,8 @@ EditorObject::EditorObject(){
     editor = new EditorBase(QString("untitled"),0);
 
     // Test Code
-    format->setFontFamily("FiraCode");
-    format->setFontPointSize(14);
-    editor->setFontFamily(format->fontFamily());
-    editor->setFontPointSize(format->fontPointSize());
+    editor->setFontFamily("FiraCode");
+    editor->setFontPointSize(14);
 }
 
 void EditorObject::save(){
@@ -44,4 +42,5 @@ EditorObject::~EditorObject(){
     free(path);
     free(stream);
     free(file);
+    free(completer);
 }
