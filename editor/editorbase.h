@@ -14,7 +14,7 @@
 class EditorBase : public QTextEdit{
 private:
     QString *title;
-    __int128_t *id;
+    long long *id;
 
     ProgramLanguageSupport *language;
     
@@ -26,8 +26,8 @@ private:
     bool *is_highlighted;
 
 public:
-    EditorBase(QString title,__int128_t id,ProgramLanguageSupport language);
-    EditorBase(QString title, __int128_t id);
+    EditorBase(QString title,long long id,ProgramLanguageSupport language);
+    EditorBase(QString title, long long id);
 
     bool highlight();
 

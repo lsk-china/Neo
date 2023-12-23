@@ -1,13 +1,13 @@
 #include "editorbase.h"
 
-EditorBase::EditorBase(QString title,__int128_t id,
+EditorBase::EditorBase(QString title,long long id,
                        ProgramLanguageSupport language){
     this->title = &title;
     this->id = &id;
     this->language = &language;
 }
 
-EditorBase::EditorBase(QString title,__int128_t id){
+EditorBase::EditorBase(QString title,long long id){
     this->title = &title;
     this->id = &id;
 }

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "plugin/pluginloader.h"
 
 #include <QApplication>
 

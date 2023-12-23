@@ -22,7 +22,7 @@ private:
     QCompleter *completer;
 
 public:
-    EditorObject(QString path, __int128_t id);
+    EditorObject(QString path, long long id);
     EditorObject();
 
     void save();

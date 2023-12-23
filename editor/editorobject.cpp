@@ -1,6 +1,6 @@
 #include "editorobject.h"
 
-EditorObject::EditorObject(QString path, __int128_t id){
+EditorObject::EditorObject(QString path, long long id){
     this->path = &path;
     this->file = new QFile(path);
     if(!file->open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Truncate)){

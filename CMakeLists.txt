@@ -12,10 +12,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
+set(LUA_SOURCES
+        include/lua/lua.h
+        include/lua/luaconf.h
+        include/lua/lualib.h
+        include/lua/lauxlib.h
+)
+
+set(PLUGIN_SOURCES
+        plugin/pluginloader.h
+)
+
+set(EDITOR_SOURCES 
         editor/editorbase.h
         editor/editorbase.cpp
         editor/editorobject.h
@@ -23,6 +31,14 @@ set(PROJECT_SOURCES
         editor/programlanguage.h
         editor/editormanager.h
         editor/editormanager.cpp
+)
+
+set(PROJECT_SOURCES
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        ${EDITOR_SOURCES}
+        ${LUA_SOURCES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

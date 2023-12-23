@@ -7,11 +7,11 @@
 class EditorManager{
 private:
     std::vector<EditorObject*> editorVector;
-    __int128_t size;
+    long long size;
 public:
     EditorManager();
 
-    EditorObject* getEditor(__int128_t index);
+    EditorObject* getEditor(long long index);
 
     ~EditorManager();
 };
