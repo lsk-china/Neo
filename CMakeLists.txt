@@ -12,15 +12,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(LUA_SOURCES
-        include/lua/lua.h
-        include/lua/luaconf.h
-        include/lua/lualib.h
-        include/lua/lauxlib.h
-)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua)
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
+        plugin/pluginloader.cpp
 )
 
 set(EDITOR_SOURCES 
@@ -37,8 +33,9 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
+
         ${EDITOR_SOURCES}
-        ${LUA_SOURCES}
+        ${PLUGIN_SOURCES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -64,7 +61,15 @@ else()
     endif()
 endif()
 
-target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+if(WIN32)
+set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/liblua.lib)
+endif(WIN32)
+
+if(UNIX)
+set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/liblua.a)
+endif(UNIX)
+
+target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
