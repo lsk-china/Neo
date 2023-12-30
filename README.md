@@ -13,9 +13,27 @@ git submodule update
 ```
 
 ## Build
+### linux
 ```
 cd Neo/thirdparty/lua
 make
 cd ../../
-cmake .
+cmake
+```
+
+### windows
+msys2
+```
+pacman -S mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base
+```
+
+[Download latest Lua source code](https://www.lua.org/download.html) and compile it with mingw32-make  
+```
+mingw32-make mingw
+```
+Copy the generated static link library to Neo/thirdparty/lua  
+
+powershell
+```
+cmake
 ```

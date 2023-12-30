@@ -61,13 +61,7 @@ else()
     endif()
 endif()
 
-if(WIN32)
-set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/liblua.lib)
-endif(WIN32)
-
-if(UNIX)
 set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/liblua.a)
-endif(UNIX)
 
 target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY})
 
