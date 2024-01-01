@@ -4,7 +4,7 @@ Container::Container(){
     luaL_openlibs(L);
 }
 
-Container::Container(std::string file)
+Container::Container(const std::string& file)
 {
     luaL_openlibs(L);
     luaL_dofile(L, file.c_str());

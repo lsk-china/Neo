@@ -6,15 +6,16 @@
 #include <QString>
 #include <QTextEdit>
 #include <QCompleter>
-#include <QTextFormat>
-#include <QTextCharFormat>
 
+#include "editorhighlighter.h"
 #include "programlanguage.h"
 
 class EditorBase : public QTextEdit{
 private:
     QString *title;
     long long *id;
+
+    EditorHighlighter *highlighter = new EditorHighlighter();
 
     ProgramLanguageSupport *language;
     

@@ -17,6 +17,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua)
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
         plugin/pluginloader.cpp
+        plugin/interface.h
 )
 
 set(EDITOR_SOURCES 
@@ -27,6 +28,12 @@ set(EDITOR_SOURCES
         editor/programlanguage.h
         editor/editormanager.h
         editor/editormanager.cpp
+        editor/editorhighlighter.cpp
+        editor/editorhighlighter.h
+)
+
+set(SERVICE_SOURCES
+        service/userconfig.h
 )
 
 set(PROJECT_SOURCES
@@ -35,6 +42,7 @@ set(PROJECT_SOURCES
         mainwindow.h
 
         ${EDITOR_SOURCES}
+        ${SERVICE_SOURCES}
         ${PLUGIN_SOURCES}
 )
 
