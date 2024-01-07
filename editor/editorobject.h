@@ -29,6 +29,9 @@ public:
     void getData();
     EditorBase* getEditor();
 
+    inline void setEditor();
+    inline void setEditor(EditorSetting setting);
+
     ~EditorObject();
 };
 

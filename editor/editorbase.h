@@ -6,18 +6,44 @@
 #include <QString>
 #include <QTextEdit>
 #include <QCompleter>
+#include <QFont>
+#include <QColor>
+
+#include "Qsci/qsciscintilla.h"
 
 #include "editorhighlighter.h"
 #include "programlanguage.h"
 
-class EditorBase : public QTextEdit{
+enum Encode
+{
+    UTF8,
+    GBK
+};
+
+enum Folding
+{
+    BoxedTreeFoldStyle
+};
+
+struct EditorSetting{
+    QFont font;
+    int setTabWidth;
+    bool setAutoIndent;
+    bool setCaretLineVisible;
+    QColor setCaretLineBackgroundColor;
+    Encode setEncode;
+    Folding setFolding;
+    int setMarginWidth;
+    QColor setMarginsForegroundColor;
+    QColor setPaperColor;
+    QColor setCaretForegroundColor;
+    int setCaretWidth;
+};
+
+class EditorBase : public QsciScintilla{
 private:
     QString *title;
     long long *id;
-
-    EditorHighlighter *highlighter = new EditorHighlighter();
-
-    ProgramLanguageSupport *language;
     
     /// status
     bool *is_saved;
@@ -27,7 +53,6 @@ private:
     bool *is_highlighted;
 
 public:
-    EditorBase(QString title,long long id,ProgramLanguageSupport language);
     EditorBase(QString title, long long id);
 
     bool highlight();

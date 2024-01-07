@@ -11,9 +11,9 @@
 // 引入lua的头文件
 // 由于qt不允许引入hpp头文件，故需要用 extern "C" 进行声明
 extern "C"{
-#include "../thirdparty/lua/lua.h"
-#include "../thirdparty/lua/lualib.h"
-#include "../thirdparty/lua/lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
 };
 
 struct PlugInfo

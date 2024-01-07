@@ -12,7 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla)
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
@@ -69,9 +70,19 @@ else()
     endif()
 endif()
 
-set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/liblua.a)
+set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src/liblua.a)
 
-target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY})
+if(WIN32)
+    message("Build on Windows")
+    set(QScintilla_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/libqscintilla2_qt6.dll)
+endif()
+
+if(UNIX)
+    message("Build on UNIX-LIKE")
+    set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/libqscintilla2_qt6.so)
+endif()
+
+target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY} ${QSCINTILLA_LIBRARY})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

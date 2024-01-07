@@ -15,10 +15,7 @@ git submodule update
 ## Build
 ### linux
 ```
-cd Neo/thirdparty/lua
-make
-cd ../../
-cmake
+sh ./build.sh
 ```
 
 ### windows
@@ -35,5 +32,9 @@ Copy the generated static link library to Neo/thirdparty/lua
 
 powershell
 ```
+cd /thirdparty/QScintilla
+qmake6
+mingw32-make 
+mingw32-make install
 cmake
 ```

@@ -9,6 +9,7 @@
 /cmake-build-release
 /out
 /.vs
+/thirdparty/QScintilla/src/.qmake.stash
 
 *~
 *.autosave
@@ -21,6 +22,7 @@
 *.rej
 *.so
 *.so.*
+*.dll
 *_pch.h.cpp
 *_resource.rc
 *.qm
