@@ -13,7 +13,9 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/scintilla)
+
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
@@ -74,13 +76,23 @@ set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src/liblua.a)
 
 if(WIN32)
     message("Build on Windows")
-    set(QScintilla_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/libqscintilla2_qt6.dll)
-endif()
+    if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+        message("Debug")
+        set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/debug/qscintilla2_qt6d.dll)
+        set(QSCINTILLA_LIBRARY_NAME qscintilla2_qt6d.dll)
+    endif(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+        message("Release")
+        set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/release/qscintilla2_qt6.dll)
+        set(QSCINTILLA_LIBRARY_NAME qscintilla2_qt6.dll)
+    endif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+endif(WIN32)
 
 if(UNIX)
     message("Build on UNIX-LIKE")
     set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/libqscintilla2_qt6.so)
-endif()
+    set(QSCINTILLA_LIBRARY_NAME libqscintilla2_qt6.so)
+endif(UNIX)
 
 target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY} ${QSCINTILLA_LIBRARY})
 
@@ -108,3 +120,7 @@ install(TARGETS Neo
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Neo)
 endif()
+
+add_custom_command(TARGET Neo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${QSCINTILLA_LIBRARY} $<TARGET_FILE_DIR:Neo>/${QSCINTILLA_LIBRARY_NAME})

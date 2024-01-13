@@ -84,3 +84,7 @@ CMakeLists.txt.user*
 
 CMakePresets.json
 CMakeUserPresets.json
+thirdparty/QScintilla/src/release/moc_predefs.h
+CMakeLists.txt
+thirdparty/QScintilla/src/Makefile
+thirdparty/QScintilla/src/debug/moc_predefs.h
