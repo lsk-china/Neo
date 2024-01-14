@@ -9,7 +9,7 @@
 
 #include "editorbase.h"
 
-class EditorObject : public QWidget
+class EditorObject : public QObject
 {
 private:
     EditorBase *editor;

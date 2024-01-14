@@ -49,6 +49,7 @@ void EditorObject::setEditor(){
     editor->setFolding(QsciScintilla::BoxedTreeFoldStyle);//折叠样式 
     editor->setMarginType(0, QsciScintilla::NumberMargin);//设置左侧行号栏
     editor->setMarginWidth(0, "00"+QString::number(editor->lines()));//设置行号栏宽度
+    editor->setMarginLineNumbers(0, true);//设置行号栏显示行号
 
     editor->setMarginsForegroundColor(QColor(0,0,0));// 设置行号栏字体颜色
     editor->setPaper(QColor(0,0,0));//设置背景颜色
@@ -56,7 +57,7 @@ void EditorObject::setEditor(){
     editor->setCaretWidth(2);//设置光标大小
 
     //connect
-    connect(this,SIGNAL(editor->linesChanged()),this,SLOT(LineChanged()));
+    connect(this->editor,&EditorBase::linesChanged,this,&EditorObject::LineChanged);
 }
 
 //slot
