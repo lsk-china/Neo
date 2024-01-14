@@ -9,7 +9,7 @@
 
 #include "editorbase.h"
 
-class EditorObject
+class EditorObject : public QWidget
 {
 private:
     EditorBase *editor;
@@ -33,6 +33,10 @@ public:
     inline void setEditor(EditorSetting setting);
 
     ~EditorObject();
+
+private slots:
+    ///检测行数改变，并自动修改行号栏宽度
+    void LineChanged();
 };
 
 #endif
