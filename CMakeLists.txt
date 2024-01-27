@@ -13,9 +13,13 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/scintilla)
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/win32)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/gtk)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEdit)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEditBase)
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
@@ -76,25 +80,23 @@ set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src/liblua.a)
 
 if(WIN32)
     message("Build on Windows")
-    if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-        message("Debug")
-        set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/debug/qscintilla2_qt6d.dll)
-        set(QSCINTILLA_LIBRARY_NAME qscintilla2_qt6d.dll)
-    endif(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-        message("Release")
-        set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/release/qscintilla2_qt6.dll)
-        set(QSCINTILLA_LIBRARY_NAME qscintilla2_qt6.dll)
-    endif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/Scintilla.dll)
+    set(SCINTILLA_LIBRARY_NAME Scintilla.dll)
+
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/ScintillaEdit5.dll)
+    set(SCINTILLA_EDIT_NAME ScintillaEdit5.dll)
 endif(WIN32)
 
 if(UNIX)
     message("Build on UNIX-LIKE")
-    set(QSCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/QScintilla/src/libqscintilla2_qt6.so)
-    set(QSCINTILLA_LIBRARY_NAME libqscintilla2_qt6.so)
+    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintilla.so)
+    set(SCINTILLA_LIBRARY_NAME libScintilla.so)
+
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintillaEdit5.so)
+    set(SCINTILLA_EDIT_NAME libScintillaEdit5.so)
 endif(UNIX)
 
-target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY} ${QSCINTILLA_LIBRARY})
+target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY} ${SCINTILLA_LIBRARY} ${SCINTILLA_EDIT})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -123,4 +125,11 @@ endif()
 
 add_custom_command(TARGET Neo POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${QSCINTILLA_LIBRARY} $<TARGET_FILE_DIR:Neo>/${QSCINTILLA_LIBRARY_NAME})
+    ${SCINTILLA_LIBRARY} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_LIBRARY_NAME}
+
+)
+add_custom_command(TARGET Neo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}
+)
+    

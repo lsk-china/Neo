@@ -9,7 +9,7 @@
 #include <QFont>
 #include <QColor>
 
-#include "Qsci/qsciscintilla.h"
+#include <ScintillaEdit.h>
 
 #include "editorhighlighter.h"
 #include "programlanguage.h"
@@ -40,7 +40,7 @@ struct EditorSetting{
     int setCaretWidth;
 };
 
-class EditorBase : public QsciScintilla{
+class EditorBase{
 private:
     QString *title;
     long long *id;
@@ -58,6 +58,9 @@ public:
     bool highlight();
 
     ~EditorBase();
+
+private slots:
+    void autoChangeMarginWidth();
 };
 
 #endif

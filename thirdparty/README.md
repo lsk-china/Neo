@@ -1,6 +1,6 @@
  
 
-|  Package   | Version |
-| :--------: | :-----: |
-|    Lua     |  5.4.6  |
-| QScintilla | 2.14.1  |
+|  Package  | Version |
+| :-------: | :-----: |
+|    Lua    |  5.4.6  |
+| Scintilla |  5.4.1  |
