@@ -1,6 +1,7 @@
- 
+# Dependence
 
-|  Package  | Version |
-| :-------: | :-----: |
-|    Lua    |  5.4.6  |
-| Scintilla |  5.4.1  |
+|  Package  | Version | LICENSE |
+| :-------: | :-----: | :-----: |
+|    Lua    |  5.4.6  |   MIT   |
+| Scintilla |  5.4.1  |   MIT   |
+
