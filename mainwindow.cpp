@@ -48,11 +48,10 @@ MainWindow::MainWindow(QWidget* parent)
   tabWidget->setMovable(true);
 
   // 设置平铺与主窗口中
-  //this->setCentralWidget(tabWidget);
+  this->setCentralWidget(tabWidget);
 
   // 添加tab
-  //tabWidget->addTab(editorManager->getEditor(0)->getEditor(),"untitled");
-  //editorManager->getEditor(0)->getEditor()->setFocus(); // 设置焦点
+  tabWidget->addTab(editorManager->getEditor(0)->getEditor(),"untitled");
 }
 
 MainWindow::~MainWindow() {}

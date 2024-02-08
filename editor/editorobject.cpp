@@ -15,9 +15,13 @@ EditorObject::EditorObject(QString path, long long id){
 
     // 默认设置
     setEditor();
+
+    // connect
+    connect(editor, &EditorBase::)
 }
 EditorObject::EditorObject(){
 
+    editor = new EditorBase("untitled",0);
     // 默认设置
     setEditor();
 }
@@ -33,8 +37,26 @@ EditorBase* EditorObject::getEditor(){
     return editor;
 }
 
+/// 默认设置
 void EditorObject::setEditor(){
     QFont font("FiraCode", 14, QFont::Normal);
+
+    editor->setMarginTypeN(0,SC_MARGIN_NUMBER);
+    editor->setMarginTypeN(1,SC_MARGIN_SYMBOL);
+
+    // 获取行号所需宽度
+    QString temp = QString::number(editor->getTotalLine())+"00";
+    const char *tmp = temp.toUtf8().constData();
+    // 设置行号栏大小
+    editor->setMarginWidthN(0,editor->textWidth(SC_MARGIN_NUMBER,tmp));
+}
+
+void EditorObject::resetNumberMargin() {
+    // 获取行号所需宽度
+    QString temp = QString::number(editor->getTotalLine())+"00";
+    const char *tmp = temp.toUtf8().constData();
+    // 设置行号栏大小
+    editor->setMarginWidthN(0,editor->textWidth(SC_MARGIN_NUMBER,tmp));
 }
 
 EditorObject::~EditorObject(){

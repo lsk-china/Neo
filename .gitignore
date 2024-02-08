@@ -93,3 +93,6 @@ thirdparty/Scintilla/qt/ScintillaEdit/Makefile
 thirdparty/Scintilla/qt/ScintillaEdit/ScintillaEdit.cpp
 thirdparty/Scintilla/qt/ScintillaEdit/ScintillaEdit.h
 thirdparty/Scintilla/qt/ScintillaEdit/release/moc_predefs.h
+thirdparty/Scintilla/qt/ScintillaEdit/moc_predefs.h
+thirdparty/Lua/src/lua
+thirdparty/Lua/src/luac

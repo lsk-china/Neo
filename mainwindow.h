@@ -59,7 +59,7 @@ private:
   QAction* feedBackAction = new QAction(tr("Feedback"));
   QAction* aboutAction = new QAction(tr("About"));
 
-  //EditorManager* editorManager = new EditorManager();
+  EditorManager* editorManager = new EditorManager();
 
 public:
   MainWindow(QWidget* parent = nullptr);

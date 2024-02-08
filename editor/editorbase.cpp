@@ -3,12 +3,12 @@
 EditorBase::EditorBase(QString title,long long id){
 }
 
-bool EditorBase::highlight()
+bool EditorBase::Neo_highlight()
 {
     return false;
 }
 
-void EditorBase::autoChangeMarginWidth(){
+void EditorBase::NeoAutoChangeMarginWidth(){
 }
 
 EditorBase::~EditorBase(){

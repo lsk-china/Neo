@@ -20,6 +20,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEdit)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEditBase)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/call)
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
@@ -89,10 +90,10 @@ endif(WIN32)
 
 if(UNIX)
     message("Build on UNIX-LIKE")
-    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintilla.so)
+    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libscintilla.so)
     set(SCINTILLA_LIBRARY_NAME libScintilla.so)
 
-    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintillaEdit5.so)
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintillaEdit.so)
     set(SCINTILLA_EDIT_NAME libScintillaEdit5.so)
 endif(UNIX)
 
@@ -132,4 +133,18 @@ add_custom_command(TARGET Neo POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}
 )
-    
+
+if(UNIX)
+add_custom_command(TARGET Neo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}.5
+)
+add_custom_command(TARGET Neo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}.5.4
+)
+add_custom_command(TARGET Neo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}5.4.1
+)
+endif(UNIX)

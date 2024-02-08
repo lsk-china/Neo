@@ -10,6 +10,12 @@
 #include <QColor>
 
 #include <ScintillaEdit.h>
+#include <Scintilla.h>
+#include <ScintillaMessages.h>
+#include <ScintillaStructures.h>
+#include <ScintillaCall.h>
+#include <ScintillaTypes.h>
+#include <ScintillaDocument.h>
 
 #include "editorhighlighter.h"
 #include "programlanguage.h"
@@ -40,7 +46,7 @@ struct EditorSetting{
     int setCaretWidth;
 };
 
-class EditorBase{
+class EditorBase : public ScintillaEdit{
 private:
     QString *title;
     long long *id;
@@ -55,12 +61,16 @@ private:
 public:
     EditorBase(QString title, long long id);
 
-    bool highlight();
+    bool Neo_highlight();
 
-    ~EditorBase();
+    int getTotalLine(){
+        return send(SCI_GETLINECOUNT, 0, 0);
+    }
+
+    ~EditorBase() override;
 
 private slots:
-    void autoChangeMarginWidth();
+    void NeoAutoChangeMarginWidth();
 };
 
 #endif
