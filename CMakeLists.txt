@@ -84,7 +84,7 @@ if(WIN32)
     set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/Scintilla.dll)
     set(SCINTILLA_LIBRARY_NAME Scintilla.dll)
 
-    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/ScintillaEdit5.dll)
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/ScintillaEdit.dll)
     set(SCINTILLA_EDIT_NAME ScintillaEdit5.dll)
 endif(WIN32)
 
@@ -94,7 +94,7 @@ if(UNIX)
     set(SCINTILLA_LIBRARY_NAME libScintilla.so)
 
     set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/libScintillaEdit.so)
-    set(SCINTILLA_EDIT_NAME libScintillaEdit5.so)
+    set(SCINTILLA_EDIT_NAME libScintillaEdit.so)
 endif(UNIX)
 
 target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LIBRARY} ${SCINTILLA_LIBRARY} ${SCINTILLA_EDIT})
