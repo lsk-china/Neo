@@ -87,12 +87,10 @@ CMakePresets.json
 CMakeUserPresets.json
 thirdparty/QScintilla/src/release/moc_predefs.h
 CMakeLists.txt
-thirdparty/QScintilla/src/Makefile
-thirdparty/QScintilla/src/debug/moc_predefs.h
-thirdparty/Scintilla/qt/ScintillaEdit/Makefile
-thirdparty/Scintilla/qt/ScintillaEdit/ScintillaEdit.cpp
-thirdparty/Scintilla/qt/ScintillaEdit/ScintillaEdit.h
-thirdparty/Scintilla/qt/ScintillaEdit/release/moc_predefs.h
-thirdparty/Scintilla/qt/ScintillaEdit/moc_predefs.h
+thirdparty/scintilla/qt/ScintillaEdit/Makefile
+thirdparty/scintilla/qt/ScintillaEdit/ScintillaEdit.cpp
+thirdparty/scintilla/qt/ScintillaEdit/ScintillaEdit.h
+thirdparty/scintilla/qt/ScintillaEdit/release/moc_predefs.h
+thirdparty/scintilla/qt/ScintillaEdit/moc_predefs.h
 thirdparty/Lua/src/lua
 thirdparty/Lua/src/luac

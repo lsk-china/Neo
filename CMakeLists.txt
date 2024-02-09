@@ -12,15 +12,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/win32)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/gtk)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEdit)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/qt/ScintillaEditBase)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/call)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/win32)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/gtk)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/qt/ScintillaEdit)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/qt/ScintillaEditBase)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/call)
 
 set(PLUGIN_SOURCES
         plugin/pluginloader.h
@@ -77,23 +77,23 @@ else()
     endif()
 endif()
 
-set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Lua/src/liblua.a)
+set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/src/liblua.a)
 
 if(WIN32)
     message("Build on Windows")
-    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/Scintilla.dll)
+    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/Scintilla.dll)
     set(SCINTILLA_LIBRARY_NAME Scintilla.dll)
 
-    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/ScintillaEdit5.dll)
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/ScintillaEdit5.dll)
     set(SCINTILLA_EDIT_NAME ScintillaEdit5.dll)
 endif(WIN32)
 
 if(UNIX)
     message("Build on UNIX-LIKE")
-    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libscintilla.so)
+    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/libscintilla.so)
     set(SCINTILLA_LIBRARY_NAME libScintilla.so)
 
-    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Scintilla/bin/libScintillaEdit.so)
+    set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/libScintillaEdit.so)
     set(SCINTILLA_EDIT_NAME libScintillaEdit5.so)
 endif(UNIX)
 
