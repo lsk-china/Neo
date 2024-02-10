@@ -81,17 +81,12 @@ set(LUA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lua/src/liblua.a)
 
 if(WIN32)
     message("Build on Windows")
-    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/Scintilla.dll)
-    set(SCINTILLA_LIBRARY_NAME Scintilla.dll)
-
     set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/ScintillaEdit.dll)
-    set(SCINTILLA_EDIT_NAME ScintillaEdit5.dll)
+    set(SCINTILLA_EDIT_NAME ScintillaEdit.dll)
 endif(WIN32)
 
 if(UNIX)
     message("Build on UNIX-LIKE")
-    set(SCINTILLA_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/libscintilla.so)
-    set(SCINTILLA_LIBRARY_NAME libScintilla.so)
 
     set(SCINTILLA_EDIT ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/scintilla/bin/libScintillaEdit.so)
     set(SCINTILLA_EDIT_NAME libScintillaEdit.so)
@@ -103,7 +98,7 @@ target_link_libraries(Neo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PUBLIC ${LUA_LI
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Neo)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER org.neo.neo)
 endif()
 set_target_properties(Neo PROPERTIES
     ${BUNDLE_ID_OPTION}
@@ -124,15 +119,12 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Neo)
 endif()
 
-add_custom_command(TARGET Neo POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${SCINTILLA_LIBRARY} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_LIBRARY_NAME}
-
-)
+if(WIN32)
 add_custom_command(TARGET Neo POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${SCINTILLA_EDIT} $<TARGET_FILE_DIR:Neo>/${SCINTILLA_EDIT_NAME}
 )
+endif(WIN32)
 
 if(UNIX)
 add_custom_command(TARGET Neo POST_BUILD
